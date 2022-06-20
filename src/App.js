@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import styled, { ThemeProvider } from "styled-components";
+import Header from "./components/Header.js";
+
+const Container = styled.div`
+  padding-top: ${(props) => props.theme.headerHeight};
+`;
+
+const Center = styled.div`
+  width: ${(props) => props.theme.pageWidth};
+  height: max-content;
+  margin: 0 auto;
+  padding: 20px 10px;
+
+  @media screen and (max-width: ${(props) => props.theme.pageWidth}) {
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Header />
+      <Center>hello</Center>
+    </Container>
   );
 }
 
