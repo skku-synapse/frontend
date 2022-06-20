@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
 import styled, { ThemeProvider } from "styled-components";
 import Header from "./components/Header.js";
+import Contents from "./components/Contents";
 
 const Container = styled.div`
   padding-top: ${(props) => props.theme.headerHeight};
@@ -21,7 +21,9 @@ function App() {
   return (
     <Container>
       <Header />
-      <Center>hello</Center>
+      <Center>
+        <Contents />
+      </Center>
     </Container>
   );
 }

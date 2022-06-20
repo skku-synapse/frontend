@@ -9,7 +9,7 @@ const Container = styled.div`
   z-index: 10;
   padding: 10px 0px;
 
-  background: rgba(205, 205, 205, 0.25);
+  background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 3px 10px 0 rgba(31, 38, 135, 0.2);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -31,10 +31,17 @@ const Title = styled.div`
   font-size: large;
 `;
 
+const Logo = styled.img`
+  width: ${(props) => props.theme.headerHeight};
+  height: ${(props) => props.theme.headerHeight};
+  margin: 0px 10px;
+`;
+
 const Header = () => {
   return (
     <Container>
       <InnerContainer>
+        <Logo src="logo.png" alt="logo" />
         <Title>Anomaly Detection Simulator</Title>
       </InnerContainer>
     </Container>
