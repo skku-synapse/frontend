@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ModelSelector from "./ModelSelector";
 import styled from "styled-components";
 import Visualization from "./Visualization";
@@ -16,13 +16,15 @@ const CenterContents = styled.div`
 const RightContents = styled.div``;
 
 const Contents = () => {
+  const [model, setModel] = useState("CFLOW-AD");
+
   return (
     <Container>
       <LeftContents>
-        <ModelSelector />
+        <ModelSelector setModel={setModel} />
       </LeftContents>
       <CenterContents>
-        <Visualization />
+        <Visualization model={model} />
       </CenterContents>
     </Container>
   );

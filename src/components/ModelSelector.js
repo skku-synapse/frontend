@@ -25,9 +25,7 @@ const Title = styled.div`
   margin-bottom: 10px;
 `;
 
-const ModelSelector = () => {
-  const [model, setModel] = useState("CFLOW-AD");
-
+const ModelSelector = ({ setModel }) => {
   const onChange = (e) => {
     setModel(e.target.id);
   };
