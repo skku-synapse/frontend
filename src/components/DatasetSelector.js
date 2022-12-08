@@ -1,12 +1,22 @@
 import React, { useState } from "react";
+import {
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
+} from "@mui/material";
 import styled from "styled-components";
 
 const Container = styled.div`
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 5px;
-  width: 300px;
+  background-color: rgb(170, 170, 170);
+  width: 200px;
   padding: 10px;
   margin-bottom: 10px;
+  //box-shadow: 2px 2px 10px 10px gray;
 `;
 const Selector = styled.div``;
 
@@ -26,46 +36,47 @@ const Title = styled.div`
   margin-bottom: 10px;
 `;
 
-const DatasetSelector = ({ setDataset }) => {
+const DatasetSelector = ({ dataset, setDataset, isTest }) => {
   const onChange = (e) => {
     setDataset(e.target.id);
   };
 
+  const onHandleChange = (e) => {
+    setDataset(e.target.value);
+  };
+
   return (
-    <Container>
-      <Selector>
-        <Title>Dataset</Title>
-        <Model>
-          <RadioBtn
-            id="module"
-            name="dataset"
-            type="radio"
-            disabled
-            onChange={onChange}
+    <Box sx={{ padding: 2, margin: 1 }}>
+      <FormControl>
+        <FormLabel id="demo-controlled-radio-buttons-group">Dataset</FormLabel>
+        <RadioGroup
+          row
+          aria-labelledby="demo-controlled-radio-buttons-group"
+          name="controlled-radio-buttons-group"
+          value={dataset}
+          onChange={onHandleChange}
+        >
+          <FormControlLabel
+            value="lens"
+            control={<Radio />}
+            label="LENS"
+            disabled={isTest}
           />
-          <ModelName for="module">카메라 모듈</ModelName>
-        </Model>
-        <Model>
-          <RadioBtn
-            id="lens"
-            name="dataset"
-            type="radio"
-            onChange={onChange}
-            defaultChecked
+          <FormControlLabel
+            value="flex"
+            control={<Radio />}
+            label="FLEX"
+            disabled={isTest}
           />
-          <ModelName for="lens">카메라 렌즈</ModelName>
-        </Model>
-        <Model>
-          <RadioBtn
-            id="flex"
-            name="dataset"
-            type="radio"
-            onChange={onChange}
+          <FormControlLabel
+            value="module"
+            control={<Radio />}
+            label="SMT"
+            disabled={isTest}
           />
-          <ModelName for="flex">FLEX</ModelName>
-        </Model>
-      </Selector>
-    </Container>
+        </RadioGroup>
+      </FormControl>
+    </Box>
   );
 };
 

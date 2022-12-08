@@ -1,46 +1,54 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
+import RemoveIcon from "@mui/icons-material/Remove";
+import CropDinIcon from "@mui/icons-material/CropDin";
+import { Box, Divider, Typography } from "@mui/material";
 
 const Container = styled.div`
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
-  height: 530px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 100%;
+  margin-top: 3px;
 `;
 
 const ImgWrapper = styled.div`
-  width: 250px;
-  height: 250px;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-  margin: 5px 20px;
+  width: 205px;
+  height: 205px;
+  border: 5px solid #f6f7f9;
+  border-radius: 3px;
+  border-color: ${(props) =>
+    props.isCorrect ? props.theme.customGray : "red"};
+  border-color: ${(props) =>
+    props.isCorrect === "blank" ? props.theme.customGray : null}
+  margin: 7px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
-const FileInput = styled.input`
-  display: none;
+const Speed = styled.div`
+  background-color: white;
+  color: black;
+  padding: 1px 5px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 `;
 
-const Text = styled.label`
-  color: gray;
-  font-size: small;
+const Label = styled.div`
+  padding: 1px 5px;
+  background-color: white;
+  position: absolute;
+  top: -22px;
+  left: 65px;
+  border: 5px solid;
   font-weight: bold;
-`;
-
-const Result = styled.div`
-  font-weight: bold;
-  font-size: xx-large;
-  color: ${props => props.result == "OK" ? "blue" : "red"};
-  text-align: center;
-  margin-top: -17px;
+  border-color: ${(props) => (props.label === "OK" ? "ForestGreen" : "Red")};
+  color: black;
 `;
 
 const InnerContainer = styled.div`
@@ -48,154 +56,130 @@ const InnerContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  heigth: 100%;
+  border-radius: 3px;
 `;
 
-const Visualization = ({ model, dataset, img_path }) => {
-  const DEFAULT_MESSAGE = "이미지를 선택하세요"
-  const LOADING_MESSAGE = "Loading . . ."
-  const inputFileRef = useRef();
-  const [fileName, setFileName] = useState("");
-  const [file, setFile] = useState("");
+const Prediction = styled.div`
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: ${(props) => (!props.isAnomaly ? "ForestGreen" : "Red")};
+`;
+
+const ColorLabel = styled.div`
+  width: 17px;
+  height: 17px;
+  margin: 3px 2px 0px 3px;
+  background-color: ${(props) => props.color};
+`;
+
+const Visualization = ({ index, dataInfos, isHitmapOn }) => {
+  const DEFAULT_MESSAGE = "";
+  const LOADING_MESSAGE = "Loading . . .";
   const [result, setResult] = useState(DEFAULT_MESSAGE);
 
-  const onClick = () => {
-    //inputFileRef.current.click();
-  };
-
-  useEffect(() => {
-
-    if(img_path && result != LOADING_MESSAGE){
-      setResult(LOADING_MESSAGE)
-      axios({
-        method: 'get',
-        url: 'http://115.145.212.100:51122/getImage',
-        params: {
-          'dataset': dataset,
-          'img_name': img_path
-        },
-        //data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        setFile('data:;base64,' + response.data.image)
-        
-        //console.log('data:;base64,' + response.data.image)
-      })
-      .catch((error) => {
-        console.log("aa")
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-
-      axios({
-        method: 'get',
-        url: 'http://115.145.212.100:51122/predict',
-        params: {
-          'model': model,
-          'dataset': dataset,
-          'img_name': img_path
-        },
-        //data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        const isAnomaly = response.data.isAnomaly
-        if(isAnomaly){
-          setResult("NG")
-        } else{
-          setResult("OK")
-        }
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log("aa")
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-    }
-  
-  }, [img_path])
-  
-
-  const onChangeImg = (e) => {
-    e.preventDefault();
-    
-    if(e.target.files[0]){
-      console.log(e)
-      setResult(LOADING_MESSAGE)
-      axios({
-        method: 'get',
-        url: 'http://115.145.212.100:51122/predict',
-        params: {
-          'model': model,
-          'dataset': dataset,
-          'img_name': img_path
-        },
-        //data: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((response) => {
-        const isAnomaly = response.data.isAnomaly
-        if(isAnomaly){
-          setResult("NG")
-        } else{
-          setResult("OK")
-        }
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log("aa")
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-      
-    }
-  }
+  console.log(dataInfos.length);
 
   return (
-    <Container>
-      <InnerContainer>
-        <ImgWrapper onClick={onClick}>
-          {file ? (
-            <Image src={file} alt="input image" />
-          ) : (
-            <Text>{DEFAULT_MESSAGE}</Text>
-          )}
-        </ImgWrapper>
-      </InnerContainer>
-      <FileInput
-        name='img'
-        id="img"
-        type="file"
-        accept="image/png, image/jpeg, image/jpg"
-        onChange={onChangeImg}
-        ref={inputFileRef}
-      />
-      {result !== DEFAULT_MESSAGE && result !== LOADING_MESSAGE ? 
-        <Result result={result}>
-        <Text>예측 결과</Text><br/>
-        {result}
-        </Result> : null}
+    <>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <CropDinIcon sx={{ color: "red" }} />
+        <Typography sx={{ marginRight: 1, color: "#fff" }}>
+          : Prediction Error
+        </Typography>
+        <ColorLabel color="ForestGreen" />
+        <Typography sx={{ marginRight: 1, color: "#fff" }}>: Normal</Typography>
+        <ColorLabel color="red" />
+        <Typography sx={{ marginRight: 1, color: "#fff" }}>: Anomal</Typography>
+        {/* <CropDinIcon sx={{ color: "ForestGreen" }} />
+        <Typography>: Predicted OK</Typography> */}
+      </Box>
+      <Container>
+        {index >= 1 && dataInfos[index - 1] ? (
+          <ImgWrapper
+            isCorrect={
+              (dataInfos[index - 1].isAnomaly &&
+                dataInfos[index - 1].label === "NG") ||
+              (!dataInfos[index - 1].isAnomaly &&
+                dataInfos[index - 1].label == "OK")
+            }
+          >
+            <Prediction isAnomaly={dataInfos[index - 1].isAnomaly} />
+            {isHitmapOn ? (
+              <Image src={index >= 1 ? dataInfos[index - 1].overlay : null} />
+            ) : (
+              <Image src={index >= 1 ? dataInfos[index - 1].image : null} />
+            )}
+          </ImgWrapper>
+        ) : (
+          <ImgWrapper isCorrect="blank" />
+        )}
 
-      {result === LOADING_MESSAGE ? <Text>{result}</Text> : null}
-    </Container>
+        {index >= 2 && dataInfos[index - 2] ? (
+          <ImgWrapper
+            isCorrect={
+              (dataInfos[index - 2].isAnomaly &&
+                dataInfos[index - 2].label === "NG") ||
+              (!dataInfos[index - 2].isAnomaly &&
+                dataInfos[index - 2].label == "OK")
+            }
+          >
+            <Prediction isAnomaly={dataInfos[index - 2].isAnomaly} />
+            {isHitmapOn ? (
+              <Image src={index >= 2 ? dataInfos[index - 2].overlay : null} />
+            ) : (
+              <Image src={index >= 2 ? dataInfos[index - 2].image : null} />
+            )}
+          </ImgWrapper>
+        ) : (
+          <ImgWrapper isCorrect="blank" />
+        )}
+
+        {index >= 3 && dataInfos[index - 3] ? (
+          <ImgWrapper
+            isCorrect={
+              (dataInfos[index - 3].isAnomaly &&
+                dataInfos[index - 3].label === "NG") ||
+              (!dataInfos[index - 3].isAnomaly &&
+                dataInfos[index - 3].label == "OK")
+            }
+          >
+            <Prediction isAnomaly={dataInfos[index - 3].isAnomaly} />
+            {isHitmapOn ? (
+              <Image src={index >= 3 ? dataInfos[index - 3].overlay : null} />
+            ) : (
+              <Image src={index >= 3 ? dataInfos[index - 3].image : null} />
+            )}
+          </ImgWrapper>
+        ) : (
+          <ImgWrapper isCorrect="blank" />
+        )}
+
+        {index >= 4 && dataInfos[index - 4] ? (
+          <ImgWrapper
+            isCorrect={
+              (dataInfos[index - 4].isAnomaly &&
+                dataInfos[index - 4].label === "NG") ||
+              (!dataInfos[index - 4].isAnomaly &&
+                dataInfos[index - 4].label == "OK")
+            }
+          >
+            <Prediction isAnomaly={dataInfos[index - 4].isAnomaly} />
+            {isHitmapOn ? (
+              <Image src={index >= 4 ? dataInfos[index - 4].overlay : null} />
+            ) : (
+              <Image src={index >= 4 ? dataInfos[index - 4].image : null} />
+            )}
+          </ImgWrapper>
+        ) : (
+          <ImgWrapper isCorrect="blank" />
+        )}
+      </Container>
+    </>
   );
 };
 
