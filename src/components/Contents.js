@@ -3,7 +3,6 @@ import ModelSelector from "./ModelSelector";
 import styled, { ThemeConsumer } from "styled-components";
 import Visualization from "./Visualization";
 import DatasetSelector from "./DatasetSelector";
-import DataSelector from "./DataSelector";
 import Test from "./Test";
 import Analysis from "./Analysis";
 import axios from "axios";
