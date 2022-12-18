@@ -1,17 +1,18 @@
 # Anomaly Detection Simulator - Frontend
 
-CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터셋에 대한 딥러닝 모델의 결과물을 확인할 수 있는 어플리케이션. 
-<br />
-데이터셋 이미지, 모델의 예측 결과, 실제 정상/비정상 여부를 시각적으로 확인할 수 있으며, score 계산 histogram, 예측 결과 표 등을 시각화 하여 확인해 볼 수 .
+> 렌즈 데이터셋, Flex 데이터셋, SMT 데이터셋에 대한 CS-Flow 모델의 예측 결과를 실시간으로 확인할 수 있는 웹 어플리케이션입니다.  
+> 데이터 예측 결과, 실제 양/불량 여부, visualization 결과를 확인할 수 있으며 미검율, 과검율, score histogram 등의 분석 결과를 제공합니다.
 
 ## Simulator 화면 이미지
-<img width="612" alt="simulator" src="https://user-images.githubusercontent.com/79344555/208288209-0e8ca0e8-3121-4ab1-ad23-5ac315a7404d.png">
 
+<img width="612" alt="simulator" src="https://user-images.githubusercontent.com/79344555/208288209-0e8ca0e8-3121-4ab1-ad23-5ac315a7404d.png">
 
 <br />
 
 ## Prerequisite
 
+`node`  
+`npm`  
 `react 18`
 
 `axios (API 통신)`
@@ -20,23 +21,46 @@ CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터�
 
 `Material-UI`
 
-- UI library는 mui를 활용.
-- Styled-Components를 포함하고 있으며 emotion 도 동시에 활용가능.
-- 더불어 css-in-js 기능도 탁월.
-
+- UI library는 mui를 활용하였음.
+- Styled-Components를 포함하고 있으며 emotion도 동시에 활용 가능함.
+- 더불어 css-in-js 기능도 탁월함.
 
 <br />
 
 ## Getting Started
-### Source Repository
+
+### Clone Repository
+
 ```shell script
 $ git clone https://github.com/skku-synapse/frontend.git
 $ cd frontend
 ```
 
-### folder
+### How to Run
+
+**Installation:**
+
 ```
-frontend
+$ npm install
+```
+
+**To run in development mode:**
+
+```shell script
+$ npm start
+```
+
+**To run in production mode:**
+
+```shell script
+$ npm run build
+$ sudo serve -l [포트번호] -s build
+```
+
+## 파일 구조
+
+```
+.
 ├── README.md
 ├── package-lock.json
 ├── package.json
@@ -68,60 +92,43 @@ frontend
     ├── setupTests.js
     └── theme.js
 ```
+
 <br />
 
 - App.js : root 파일
 - 컴포넌트 파일 : frontend/components/ 하위 파일
 
-### Run
-
-### Local Environment
-```shell script
-$ npm install
-$ npm start
-```
-
-<br />
-
-### In server (bulid 및 port 지정)
-```shell script
-$ sudo serve -l 80 -s build
-```
-포트 번호 : 80 
-
 ## Components
 
-- ModelSelector.js
+- **ModelSelector.js**
   - Deep Learning 모델을 선택할 수 있는 컴포넌트
-  - 현재는 CS-Flow 로 고정 되어 있음
+  - 현재는 CS-Flow 로 고정되어 있음
 
 <br />
 
-- DatasetSelector.js
-  -  Lens, Flex, SMT 데이터 중 하나를 선택하는 컴포넌트
+- **DatasetSelector.js**
+  - Lens, Flex, SMT 데이터 중 하나를 선택하는 컴포넌트
 
 <br />
 
-- Line.js
+- **Line.js**
   - Model evaluation 시작 시 progress bar를 제공하는 컴포넌트
 
 <br />
 
-- Test.js
+- **Test.js**
   - Test 시작, 중지를 컨트롤하는 버튼 컴포넌트
-  - Test 시작이 되면 Line 컴포넌트가 작동하여 progress bar 제공
-
+  - Test가 시작되면 Line 컴포넌트가 작동하여 progress bar 제공
 
 <br />
 
-- Visulization.js
+- **Visulization.js**
   - 모델의 예측 결과와 실제 정상/비정상 여부를 이미지로 제공하는 컴포넌트
-  - image border 가 빨간색 : 예측이 잘못 되었음을 표시
+  - image border가 빨간색 : 예측이 잘못 되었음을 표시
   - 빨간색 채워진 박스 : 실제 비정상
   - 초록색 채워진 박스 : 실제 정상
 
 <br />
 
-- Analysis.js
-  - 예측 결과 표, CS-Flow score histogram 이미지를 API 로 제공받아 표시하는 컴포넌트
-
+- **Analysis.js**
+  - 예측 결과 표, CS-Flow score histogram 이미지를 API로 제공받아 표시하는 컴포넌트
