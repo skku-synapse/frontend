@@ -2,7 +2,7 @@
 
 CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터셋에 대한 딥러닝 모델의 결과물을 확인할 수 있는 어플리케이션. 
 <br />
-데이터셋 이미지, 모델의 예측 결과, 실제 정상/비정상 여부를 시각적으로 확인할 수 있으며, score 계산 histogram, 예측 결과 표 등을 시각화 하여 확인해 볼 수 있다.
+데이터셋 이미지, 모델의 예측 결과, 실제 정상/비정상 여부를 시각적으로 확인할 수 있으며, score 계산 histogram, 예측 결과 표 등을 시각화 하여 확인해 볼 수 .
 
 ## Simulator 화면 이미지
 <img width="612" alt="simulator" src="https://user-images.githubusercontent.com/79344555/208288209-0e8ca0e8-3121-4ab1-ad23-5ac315a7404d.png">
@@ -16,13 +16,13 @@ CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터�
 
 `axios (API 통신)`
 
-- 기본적으로 fetch가 존재하나 부족한 부분이나 안정성이 결여되어 있어서 채택하였다.
+- 기본적으로 fetch가 존재하나 부족한 부분이나 안정성이 결여되어 있어서 채택함.
 
 `Material-UI`
 
-- UI library는 mui를 활용하도록 한다.
-- Styled-Components를 포함하고 있으며 emotion 도 동시에 활용가능하다
-- 더불어 css-in-js 기능도 탁월하다
+- UI library는 mui를 활용.
+- Styled-Components를 포함하고 있으며 emotion 도 동시에 활용가능.
+- 더불어 css-in-js 기능도 탁월.
 
 
 <br />
@@ -33,6 +33,45 @@ CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터�
 $ git clone https://github.com/skku-synapse/frontend.git
 $ cd frontend
 ```
+
+### folder
+```
+frontend
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo.png
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── components
+    │   ├── Analysis.js
+    │   ├── Circlar.js
+    │   ├── Contents.js
+    │   ├── DatasetSelector.js
+    │   ├── Header.js
+    │   ├── Line.js
+    │   ├── ModelSelector.js
+    │   ├── Test.js
+    │   └── Visualization.js
+    ├── index.css
+    ├── index.js
+    ├── reportWebVitals.js
+    ├── setupTests.js
+    └── theme.js
+```
+<br />
+
+- App.js : root 파일
+- 컴포넌트 파일 : frontend/components/ 하위 파일
 
 ### Run
 
@@ -50,7 +89,7 @@ $ sudo serve -l 80 -s build
 ```
 포트 번호 : 80 
 
-### Components
+## Components
 
 - ModelSelector.js
   - Deep Learning 모델을 선택할 수 있는 컴포넌트
