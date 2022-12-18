@@ -38,9 +38,17 @@ $ cd frontend
 
 ### Local Environment
 ```shell script
-$ npm run build
+$ npm install
 $ npm start
 ```
+
+<br />
+
+### In server (bulid 및 port 지정)
+```shell script
+$ sudo serve -l 80 -s build
+```
+포트 번호 : 80 
 
 ### Components
 
