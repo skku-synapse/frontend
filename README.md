@@ -1,4 +1,4 @@
-# One-class Learning Model Test Simulator (딥러닝 모델 평가 시뮬레이터)
+# Anomaly Detection Simulator - Frontend
 
 CS-Flow 를 사용하여 렌즈 데이터셋, Flex 데이터셋, SMT 데이터셋에 대한 딥러닝 모델의 결과물을 확인할 수 있는 어플리케이션. 
 <br />
