@@ -95,34 +95,34 @@ $ sudo serve -l [포트번호] -s build
 
 <br />
 
-- App.js : root 파일
+- [App.js](https://github.com/skku-synapse/frontend/blob/main/src/App.js) : root 파일
 - 컴포넌트 파일 : frontend/components/ 하위 파일
 
 ## Components
 
-- **ModelSelector.js**
+- **[ModelSelector.js](https://github.com/skku-synapse/frontend/blob/main/src/components/ModelSelector.js)**
   - Deep Learning 모델을 선택할 수 있는 컴포넌트
   - 현재는 CS-Flow 로 고정되어 있음
 
 <br />
 
-- **DatasetSelector.js**
+- **[DatasetSelector.js](https://github.com/skku-synapse/frontend/blob/main/src/components/DatasetSelector.js)**
   - Lens, Flex, SMT 데이터 중 하나를 선택하는 컴포넌트
 
 <br />
 
-- **Line.js**
+- **[Line.js](https://github.com/skku-synapse/frontend/blob/main/src/components/Line.js)**
   - Model evaluation 시작 시 progress bar를 제공하는 컴포넌트
 
 <br />
 
-- **Test.js**
+- **[Test.js](https://github.com/skku-synapse/frontend/blob/main/src/components/Test.js)**
   - Test 시작, 중지를 컨트롤하는 버튼 컴포넌트
   - Test가 시작되면 Line 컴포넌트가 작동하여 progress bar 제공
 
 <br />
 
-- **Visulization.js**
+- **[Visulization.js](https://github.com/skku-synapse/frontend/blob/main/src/components/Visulization.js)**
   - 모델의 예측 결과와 실제 정상/비정상 여부를 이미지로 제공하는 컴포넌트
   - image border가 빨간색 : 예측이 잘못 되었음을 표시
   - 빨간색 채워진 박스 : 실제 비정상
@@ -130,5 +130,5 @@ $ sudo serve -l [포트번호] -s build
 
 <br />
 
-- **Analysis.js**
+- **[Analysis.js](https://github.com/skku-synapse/frontend/blob/main/src/components/Analysis.js)**
   - 예측 결과 표, CS-Flow score histogram 이미지를 API로 제공받아 표시하는 컴포넌트
