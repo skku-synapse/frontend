@@ -12,12 +12,17 @@
 ## Prerequisite
 
 `node` (version: 16.15.1)
+<br />
 `npm`  (version: 8.12.2)
+<br />
 `react 18` (version: 18.2.0)
+<br />
 
 `axios (API 통신)` (version: 0.27.2)
 
 - 기본적으로 fetch가 존재하나 부족한 부분이나 안정성이 결여되어 있어서 채택함.
+
+<br />
 
 `Material-UI` (version: 5.10.0)
 
@@ -26,12 +31,13 @@
 - 더불어 css-in-js 기능도 탁월함.
 - 따로 설치가 필요 (아래 command 확인)
 
+<br />
+
 **Install Prerequisite**
 ```shell script
 $ npm install
 $ npm install @mui/material
 ```
-
 
 <br />
 
