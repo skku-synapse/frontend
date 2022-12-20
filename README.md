@@ -5,7 +5,7 @@
 
 ## Simulator 화면 이미지
 
-<img width="612" alt="simulator" src="https://user-images.githubusercontent.com/79344555/208288209-0e8ca0e8-3121-4ab1-ad23-5ac315a7404d.png">
+<img src="https://user-images.githubusercontent.com/79344555/208611044-ac9082cc-fd9a-4ae9-adc0-d3017f7a5336.gif" />
 
 <br />
 
