@@ -29,14 +29,14 @@
 - UI library는 mui를 활용하였음.
 - Styled-Components를 포함하고 있으며 emotion도 동시에 활용 가능함.
 - 더불어 css-in-js 기능도 탁월함.
-- 따로 설치가 필요 (아래 command 확인)
 
 <br />
 
 **Install Prerequisite**
+- repository 의 package.json 파일로 대체 후 install  
+<br />
 ```shell script
 $ npm install
-$ npm install @mui/material
 ```
 
 <br />
