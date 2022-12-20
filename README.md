@@ -32,15 +32,6 @@
 
 <br />
 
-**Install Prerequisite**
-- repository 의 package.json 파일로 대체 후 install  
-<br />
-```shell script
-$ npm install
-```
-
-<br />
-
 ## Getting Started
 
 ### Clone Repository
@@ -54,7 +45,10 @@ $ cd frontend
 
 **Installation:**
 
-```
+- repository 의 package.json 파일로 대체 후 install  
+<br />
+
+```shell script
 $ npm install
 ```
 
